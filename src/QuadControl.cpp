@@ -222,15 +222,14 @@ V3F QuadControl::LateralPositionControl(V3F posCmd, V3F velCmd, V3F pos, V3F vel
 	V3F accelCmd = accelCmdFF;
 
 	////////////////////////////// BEGIN STUDENT CODE ///////////////////////////
-	//V3F velocity_cmd = kpPosXY * (posCmd - pos);
-	float velocity_norm = std::sqrtf(velCmd.x * velCmd.x + velCmd.y * velCmd.y);
+	float velocity_norm = sqrtf(velCmd.x * velCmd.x + velCmd.y * velCmd.y);
 
 	if (velocity_norm > maxSpeedXY)
 		velCmd = velCmd * maxSpeedXY / velocity_norm;
 
 	accelCmd += kpPosXY * (posCmd - pos) + kpVelXY * (velCmd - vel);
 
-	float acc_norm = std::sqrtf(accelCmd.x * accelCmd.x + accelCmd.y * accelCmd.y);
+	float acc_norm = sqrtf(accelCmd.x * accelCmd.x + accelCmd.y * accelCmd.y);
 	if (acc_norm > maxAccelXY)
 		accelCmd = accelCmd * maxAccelXY / acc_norm;
 
